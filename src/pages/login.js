@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 import Image from 'react-bootstrap/Image';
 import Alert from 'react-bootstrap/Alert';
-// import PropTypes from 'prop-types';
+import Link from 'react-router-dom/Link';
+import PropTypes from 'prop-types';
 import AppIcon from '../images/logo.png';
 import axios from 'axios';
 
@@ -45,6 +46,7 @@ export class login extends Component {
         axios.post('/login', userData)
             .then(res => {
                 console.log(res.data);
+                localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
                 this.setState({
                     loading: false
                 });
@@ -86,24 +88,37 @@ export class login extends Component {
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control name="password" id="password" type="password" placeholder="Password" onChange={this.handleChange}/>
+                    <Form.Control name="password" id="password" type="password" placeholder="Password" onChange={this.handleChange} isInvalid={errors.password ? true: false}/>
+                    <Form.Control.Feedback type="invalid">
+                            {errors.password}
+                    </Form.Control.Feedback>
                 </Form.Group>
+
 
                 {errors.general && (
                     <Alert variant="danger">
                         {errors.general}
                     </Alert>
                 )}
-
                 <ImageSize>
-                    <Button className="largebutton" variant="danger" type="submit">
-                        Log In
+                    <Button className="largebutton" variant="danger" type="submit"
+                    disabled={loading}>
+                    {loading ? 'Loading…' : 'Log In'}
                     </Button>
+                </ImageSize>
+                <ImageSize>
+                    <Form.Label>
+                        Don't have an account? Sign up <Link to="/signup"> here</Link>.
+                    </Form.Label>
                 </ImageSize>
             </Form>
         </LoginDiv>
         )
     }
 }
+
+login.propTypes = {
+    classes: PropTypes.object.isRequired
+};
 
 export default login
