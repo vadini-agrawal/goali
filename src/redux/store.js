@@ -8,7 +8,7 @@ import uiReducer from './reducers/uiReducer';
 
 const initialState = {};
 
-const middleWare = [thunk];
+const middleware = [thunk];
 
 const reducers = combineReducers({
     user: userReducer,

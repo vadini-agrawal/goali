@@ -7,7 +7,9 @@ import Alert from 'react-bootstrap/Alert';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 import AppIcon from '../images/logo.png';
-import axios from 'axios';
+//Redux stuff 
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/actions/userActions';
 
 const LoginDiv= styled.section`
   width: 50%;
@@ -34,30 +36,21 @@ export class login extends Component {
             errors: {}
         }
     };
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.UI.errors) {
+            this.setState({errors: nextProps.UI.errors});
+        }
+    }
     handleSubmit = (event) => {
         event.preventDefault();
-        this.setState({
-            loading: true
-        });
+        // this.setState({
+        //     loading: true
+        // });
         const userData = {
             email: this.state.email,
             password: this.state.password
         }
-        axios.post('/login', userData)
-            .then(res => {
-                console.log(res.data);
-                localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
-                this.setState({
-                    loading: false
-                });
-                this.props.history.push('/');
-            })
-            .catch(err => {
-                this.setState({
-                    errors: err.response.data,
-                    loading: false
-                })
-            })
+        this.props.loginUser(userData, this.props.history);
     };
     handleChange = (event) => {
         this.setState({
@@ -65,8 +58,8 @@ export class login extends Component {
         });
     }
     render() {
-        const { classes } = this.props;
-        const { errors, loading } = this.state;
+        const { classes, UI: {loading } } = this.props;
+        const { errors } = this.state;
         return (
         <LoginDiv>
             <Form noValidate validate={this.validated} onSubmit={this.handleSubmit}>
@@ -118,7 +111,19 @@ export class login extends Component {
 }
 
 login.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    UI: PropTypes.object.isRequired
 };
 
-export default login
+const mapStateToProps = (state) => ({
+    user: state.user, 
+    UI: state.UI
+});
+
+const mapActionsToProps = {
+    loginUser 
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(login);
