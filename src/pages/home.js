@@ -3,8 +3,9 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+//Components
 import Update from '../components/Update';
-
+import Profile from '../components/Profile';
 
 
 export class home extends Component {
@@ -33,7 +34,7 @@ export class home extends Component {
                         {recentUpdatesMarkup}
                     </Col>
                     <Col md={3} lg={3} sm={4} xs={12}>
-                        <p> Profile...</p>
+                        <Profile />
                     </Col>
                 </Row>
             </Container>
