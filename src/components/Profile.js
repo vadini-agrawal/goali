@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import EditDetails from './EditDetails';
 //UI 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -15,6 +16,8 @@ import HouseIcon from 'react-bootstrap-icons/dist/icons/house-door-fill';
 import LinkIcon from 'react-bootstrap-icons/dist/icons/link';
 import CalendarIcon from 'react-bootstrap-icons/dist/icons/calendar-fill';
 import EditIcon from 'react-bootstrap-icons/dist/icons/pencil';
+import Kanban from 'react-bootstrap-icons/dist/icons/kanban-fill';
+
 //Redux
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
@@ -31,6 +34,9 @@ class Profile extends Component {
     handleEditPicture = (event) => {
         const fileInput = document.getElementById('imageInput');
         fileInput.click();
+    };
+    handleLogoutUser = () => {
+        this.props.logoutUser();
     }
     render() {
         const { classes, user: { credentials: { handle, createdAt, imageUrl, bio, website, location}, loading, authenticated}} = this.props;
@@ -86,7 +92,18 @@ class Profile extends Component {
                         <Card.Text>
                             Joined { dayjs(createdAt).format('MMM YYYY')}
                         </Card.Text>
+                        <OverlayTrigger
+                                placement='bottom'
+                                overlay = {
+                                <Tooltip id='logoutUser'>
+                                    Log out
+                                </Tooltip>
+                                }
+                            >
+                                <Kanban onClick={this.handleLogoutUser} />
+                        </OverlayTrigger>
                     </div>
+                    <EditDetails />
                 </Card.Body>
             </Card>
         ): (
