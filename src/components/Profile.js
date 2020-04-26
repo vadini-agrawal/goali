@@ -21,6 +21,7 @@ import Kanban from 'react-bootstrap-icons/dist/icons/kanban-fill';
 //Redux
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import MyButton from '../util/MyButton';
 
 
 class Profile extends Component {
@@ -48,16 +49,9 @@ class Profile extends Component {
                         <div className="profile-img">
                             <Image width="80px" src={imageUrl} alt="Profile Pic" roundedCircle></Image>
                             <input type="file" id="imageInput" hidden="hidden" onChange={this.handleImageChange}/>
-                            <OverlayTrigger
-                                placement='bottom'
-                                overlay = {
-                                <Tooltip id='editImage'>
-                                    Change your profile picture. 
-                                </Tooltip>
-                                }
-                            >
+                            <MyButton tip="Change your profile picture" id="editImage">
                                 <EditIcon onClick={this.handleEditPicture} />
-                            </OverlayTrigger>
+                            </MyButton>
                         </div>  
                         <br/>
                         <div className="profile-details">
@@ -92,16 +86,9 @@ class Profile extends Component {
                         <Card.Text>
                             Joined { dayjs(createdAt).format('MMM YYYY')}
                         </Card.Text>
-                        <OverlayTrigger
-                                placement='bottom'
-                                overlay = {
-                                <Tooltip id='logoutUser'>
-                                    Log out
-                                </Tooltip>
-                                }
-                            >
-                                <Kanban onClick={this.handleLogoutUser} />
-                        </OverlayTrigger>
+                        <MyButton tip="Log out" id="logoutUser">
+                            <Kanban onClick={this.handleLogoutUser} />
+                        </MyButton>
                     </div>
                     <EditDetails />
                 </Card.Body>

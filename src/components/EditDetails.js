@@ -13,6 +13,7 @@ import { editUserDetails } from '../redux/actions/userActions';
 //Icons 
 import EditIcon from 'react-bootstrap-icons/dist/icons/pencil';
 import FormGroup from 'react-bootstrap/FormGroup';
+import MyButton from '../util/MyButton';
 
 
 class EditDetails extends Component {
@@ -60,17 +61,9 @@ class EditDetails extends Component {
         const { classes } = this.props;
         return (
             <Fragment>
-                <OverlayTrigger
-                    placement='bottom'
-                    overlay = {
-                        <Tooltip id='editDetails'>
-                            Edit Details
-                        </Tooltip>
-                    }
-                >
-                <EditIcon onClick={this.handleOpen} />
-                </OverlayTrigger>
-                
+                <MyButton tip="Edit Details" id="editDetails">
+                  <EditIcon onClick={this.handleOpen} />
+                </MyButton>
                 <Modal show={ this.state.open } onHide={ this.handleClose } size="lg">
                     <Modal.Header closeButton>
                      <Modal.Title>Edit Details</Modal.Title>

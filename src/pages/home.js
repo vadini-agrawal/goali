@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import PropTypes from 'prop-types';
 //Components
 import Update from '../components/Update';
 import Profile from '../components/Profile';
+//Redux 
+import { connect } from 'react-redux';
+import { getUpdates } from '../redux/actions/dataActions';
 
 
-export class home extends Component {
-    state = {
-        update: null
-    }
+class home extends Component {
     componentDidMount() {
-        axios.get('/updates')
-            .then(res => {
-                console.log(res.data);
-                this.setState({
-                    updates: res.data
-                })
-            })
-            .catch(err => console.log(err));
+        this.props.getUpdates();
     }
     render() {
-        let recentUpdatesMarkup = this.state.updates ? (
-            this.state.updates.map(update => <Update key={update.updateId} update={update}/>)
+        const { updates, loading } = this.props.data;
+        let recentUpdatesMarkup = !loading ? (
+            updates.map(update => <Update key={update.updateId} update={update}/>)
         ) : ( <p> Loading ...</p>
         );
         return (
@@ -42,4 +36,13 @@ export class home extends Component {
     }
 }
 
-export default home
+home.propTypes = {
+    getUpdates: PropTypes.func.isRequired, 
+    data: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    data: state.data
+})
+
+export default connect(mapStateToProps, { getUpdates })(home);
