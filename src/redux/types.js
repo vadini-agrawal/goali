@@ -16,3 +16,4 @@ export const SET_UPDATE = 'SET_UPDATE';
 export const LIKE_UPDATE = 'LIKE_UPDATE';
 export const UNLIKE_UPDATE = 'UNLIKE_UPDATE';
 export const DELETE_UPDATE = 'DELETE_UPDATE';
+export const POST_UPDATE = 'POST_UPDATE';

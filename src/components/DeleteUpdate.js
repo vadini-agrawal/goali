@@ -13,11 +13,13 @@ import Form from 'react-bootstrap/Form';
 //Icons 
 import DelIcon from 'react-bootstrap-icons/dist/icons/x-circle';
 
-// const styles = {
-//     .deleteIcon {
-
-//     }
-// }
+const Styled = styled.section`
+    .deleteIcon {
+        position: absolute;
+        left: 90%;
+        top: 10%;
+    }
+`;
 
 class DeleteUpdate extends Component {
     state = {
@@ -36,9 +38,11 @@ class DeleteUpdate extends Component {
     render() {
         return (
             <Fragment>
+                <Styled>
                 <MyButton tip="Delete update" >
                     <DelIcon className="deleteIcon" onClick={this.handleOpen}/>
                 </MyButton>
+                </Styled>
                 <Modal show={ this.state.open } onHide={ this.handleClose } size="sm">
                     <Modal.Header closeButton>
                         <Modal.Title>Are you sure you want to delete this update?</Modal.Title>
