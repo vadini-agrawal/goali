@@ -22,7 +22,7 @@ export const getUpdates = () => (dispatch) => {
 //Post update
 export const postUpdate = (newUpdate) => dispatch => {
     dispatch({ type: LOADING_UI });
-    axios.post(`/update`, newUpdate)
+    axios.post('/update', newUpdate)
         .then((res) => {
             dispatch({ 
                 type: POST_UPDATE,
@@ -77,4 +77,8 @@ export const deleteUpdate = (updateId) => dispatch => {
             })
         })
         .catch(err => console.log(err));
+}
+
+export const clearErrors = () => (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS });
 }
