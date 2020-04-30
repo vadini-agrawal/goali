@@ -68,7 +68,7 @@ class PostUpdate extends Component {
                         <Modal.Body>
                                     <Form.Group>
                                     <Form.Label>Your update</Form.Label>
-                                    <Form.Control name="body" as="textarea" rows="2" placeholder="Your small win!"  onChange={this.handleChange} isInvalid={errors.body }/>
+                                    <Form.Control name="body" as="textarea" rows="2" size="lg" placeholder="Your small win!"  onChange={this.handleChange} isInvalid={errors.body }/>
                                     <Form.Control.Feedback type="invalid">
                                             {errors.body}
                                     </Form.Control.Feedback>

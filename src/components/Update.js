@@ -11,6 +11,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import MyButton from '../util/MyButton';
 import DeleteUpdate from '../components/DeleteUpdate';
+import UpdateDialog from '../components/UpdateDialog';
+
+
 //import likeButton from ''
 //Icons 
 import ChatIcon from 'react-bootstrap-icons/dist/icons/chat-dots-fill';
@@ -134,6 +137,9 @@ class Update extends Component {
                                 </MyButton>
                                     {commentCount} Comments
                             </Col>
+                        </Row>
+                        <Row>
+                            <UpdateDialog updateId = { updateId } userHandle={ userHandle } /> 
                         </Row>
                     </Card.Body>
                 </Card>

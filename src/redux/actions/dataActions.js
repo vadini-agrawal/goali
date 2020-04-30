@@ -1,4 +1,4 @@
-import { SET_UPDATES, SET_UPDATE, POST_UPDATE, LOADING_DATA, LIKE_UPDATE, UNLIKE_UPDATE, DELETE_UPDATE, LOADING_UI, CLEAR_ERRORS, SET_ERRORS} from '../types';
+import { SET_UPDATES, SET_UPDATE, POST_UPDATE, LOADING_DATA, LIKE_UPDATE, UNLIKE_UPDATE, DELETE_UPDATE, LOADING_UI, CLEAR_ERRORS, SET_ERRORS, STOP_LOADING_UI} from '../types';
 import axios from 'axios';
 
 //Get all updates 
@@ -66,7 +66,20 @@ export const unlikeUpdate = (updateId) => dispatch => {
         })
 }
 
-
+export const getUpdate = (updateId) => dispatch => {
+    dispatch({ type: LOADING_UI });
+    axios.get(`/update/${updateId}`)
+        .then(res => {
+            dispatch({ 
+                type: SET_UPDATE,
+                payload: res.data 
+            });
+            dispatch({ type: STOP_LOADING_UI });
+        })
+        .catch( err => {
+            console.log(err);
+        });
+}
 
 export const deleteUpdate = (updateId) => dispatch => {
     axios.delete(`/update/${updateId}`)
