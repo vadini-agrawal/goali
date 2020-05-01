@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 //Components
-import Update from '../components/Update';
-import Profile from '../components/Profile';
+import Update from '../components/update/Update';
+import Profile from '../components/profile/Profile';
 //Redux 
 import { connect } from 'react-redux';
 import { getUpdates } from '../redux/actions/dataActions';

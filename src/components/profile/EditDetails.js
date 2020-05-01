@@ -9,11 +9,11 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 //Redux 
 import { connect } from 'react-redux';
-import { editUserDetails } from '../redux/actions/userActions';
+import { editUserDetails } from '../../redux/actions/userActions';
 //Icons 
 import EditIcon from 'react-bootstrap-icons/dist/icons/pencil';
 import FormGroup from 'react-bootstrap/FormGroup';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 
 class EditDetails extends Component {

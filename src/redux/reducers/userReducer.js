@@ -44,6 +44,7 @@ export default function(state = initialState, action){
                 ...state,
                 likes: state.likes.filter(like => like.updateId !== action.payload.updateId)
             };
+            
         default:
             return state;
     }

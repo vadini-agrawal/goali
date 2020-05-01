@@ -30,6 +30,9 @@ export default function(state = initialState, action) {
         case UNLIKE_UPDATE:
             let index = state.updates.findIndex((update) => update.updateId === action.payload.updateId);
             state.updates[index] = action.payload
+            if (state.update.updateId === action.payload.updateId) {
+                state.update = action.payload;
+            }
             return {
                 ...state,
             };

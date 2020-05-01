@@ -20,8 +20,8 @@ import Kanban from 'react-bootstrap-icons/dist/icons/kanban-fill';
 
 //Redux
 import { connect } from 'react-redux';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
-import MyButton from '../util/MyButton';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
+import MyButton from '../../util/MyButton';
 
 
 class Profile extends Component {

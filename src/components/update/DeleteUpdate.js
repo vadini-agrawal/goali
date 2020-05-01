@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { LinkContainer} from 'react-router-bootstrap';
 import { connect } from 'react-redux';
-import { deleteUpdate} from '../redux/actions/dataActions';
+import { deleteUpdate} from '../../redux/actions/dataActions';
 import PropTypes from 'prop-types';
 //UI 
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';

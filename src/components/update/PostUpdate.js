@@ -8,10 +8,10 @@ import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 //Icons 
 import AddIcon from 'react-bootstrap-icons/dist/icons/plus';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 //Redux 
 import { connect } from 'react-redux';
-import { postUpdate, clearErrors } from '../redux/actions/dataActions';
+import { postUpdate, clearErrors } from '../../redux/actions/dataActions';
 
 class PostUpdate extends Component {
     state = {

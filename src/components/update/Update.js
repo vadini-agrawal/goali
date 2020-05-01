@@ -9,20 +9,17 @@ import { LinkContainer} from 'react-router-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import MyButton from '../util/MyButton';
-import DeleteUpdate from '../components/DeleteUpdate';
-import UpdateDialog from '../components/UpdateDialog';
-
+import MyButton from '../../util/MyButton';
+import DeleteUpdate from './DeleteUpdate';
+import UpdateDialog from './UpdateDialog';
+import LikeButton from './LikeButton';
 
 //import likeButton from ''
 //Icons 
 import ChatIcon from 'react-bootstrap-icons/dist/icons/chat-dots-fill';
-import Heart from 'react-bootstrap-icons/dist/icons/heart';
-import HeartFull from 'react-bootstrap-icons/dist/icons/heart-fill';
 
 //Redux
 import { connect } from 'react-redux';
-import { likeUpdate, unlikeUpdate } from '../redux/actions/dataActions';
 import PropTypes from 'prop-types';
 
 const CardStyle = styled.section`
@@ -38,17 +35,7 @@ const IconStyle = styled.svg`
 // `;
 
 class Update extends Component {
-    likedUpdate = () => {
-        if (this.props.user.likes && this.props.user.likes.find(like => like.updateId === this.props.update.updateId)) {
-            return true;
-        } else return false;
-    };
-    likeUpdate = () => {
-        this.props.likeUpdate(this.props.update.updateId);
-    };
-    unlikeUpdate = () => {
-        this.props.unlikeUpdate(this.props.update.updateId);
-    }
+
     render() {
         dayjs.extend(relativeTime);
         const { 
@@ -70,29 +57,6 @@ class Update extends Component {
                 }
             }
         } = this.props;
-        const likeButton = !authenticated ? (
-                <MyButton tip="Like">
-                    {/* <IconStyle> */}
-                    <LinkContainer to='/login'>
-                    <Heart  />
-                    {/* </IconStyle> */}
-                    </LinkContainer>
-                </MyButton>
-        ) : (
-            this.likedUpdate() ? (
-                <MyButton tip="Unlike" >
-                    {/* <IconStyle> */}
-                    <HeartFull onClick ={ this.unlikeUpdate} />
-                    {/* </IconStyle> */}
-                </MyButton>
-            ) : (
-                <MyButton tip="Like" >
-                    {/* <IconStyle> */}
-                    <Heart onClick ={ this.likeUpdate} />
-                    {/* </IconStyle> */}
-                </MyButton>
-            )
-        );
         const deleteButton = authenticated && userHandle === handle ? (
             <DeleteUpdate updateId={updateId}/>
         ) : null
@@ -130,7 +94,7 @@ class Update extends Component {
                                 </Card.Text>
                             </Col>
                             <Col xs={5} sm={5} md={5} lg={5}>
-                                { likeButton }
+                                <LikeButton updateId = { updateId}/>
                                 {likeCount} Likes    
                                 <MyButton tip="Comment">
                                     <ChatIcon />
@@ -149,8 +113,6 @@ class Update extends Component {
 }
 
 Update.propTypes = {
-    likeUpdate: PropTypes.func.isRequired,
-    unlikeUpdate: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     update: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired
@@ -160,9 +122,4 @@ const mapStateToProps = state => ({
     user: state.user
 })
 
-const mapActionsToProps = {
-    likeUpdate,
-    unlikeUpdate
-}
-
-export default connect(mapStateToProps, mapActionsToProps)(Update);
+export default connect(mapStateToProps)(Update);

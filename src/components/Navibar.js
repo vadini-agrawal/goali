@@ -10,7 +10,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavItem from 'react-bootstrap/Nav';
 import MyButton from '../util/MyButton';
-import PostUpdate from '../components/PostUpdate';
+import PostUpdate from './update/PostUpdate';
 //Icons 
 import AddIcon from 'react-bootstrap-icons/dist/icons/plus';
 import HomeIcon from 'react-bootstrap-icons/dist/icons/house-door-fill';
@@ -25,8 +25,6 @@ const NavIcons= styled.section`
   margin: 10px;
   margin-left: 35vw;
   display: inline-block;
-`;
-const IconSpace = styled.section`
 `;
 
 export class Navibar extends Component {
