@@ -20,6 +20,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import { LinkContainer } from 'react-router-bootstrap';
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 
 
 const Styled = styled.section`
@@ -60,7 +61,8 @@ class UpdateDialog extends Component {
                 likeCount, 
                 commentCount, 
                 userImage, 
-                userHandle 
+                userHandle, 
+                comments
             },
             UI: { loading }
         } = this.props;
@@ -71,7 +73,7 @@ class UpdateDialog extends Component {
                 <MyButton tip='Expand update'>
                     <UnfoldIcon onClick={ this.handleOpen } />
                 </MyButton>
-                <Modal show={ this.state.open  } onHide={ this.handleClose } width="60%">
+                <Modal size="lg" show={ this.state.open  } onHide={ this.handleClose } width="80%" style={{'width': '80% !important',  'padding': '10px'}}>
                     { loading ? (
                         <StyledSpin>
                         <Modal.Body>
@@ -84,7 +86,7 @@ class UpdateDialog extends Component {
                         </StyledSpin>
                     ) : (
                         <Styled>
-                        <Modal.Body>
+                        <Modal.Body style={{'maxHeight': 'calc(100vh - 50px)', 'overflowY': 'auto'}} >
                                 <Row>
                                     <Col sm={3}>
                                         <Image width="80px" height="80px" className="proPic" src={userImage} roundedCircle/>
@@ -111,7 +113,13 @@ class UpdateDialog extends Component {
                                             <ChatIcon />
                                         </MyButton>
                                             {commentCount} Comments
-                                            </Col>
+                                    </Col>
+                                    <hr />
+                                </Row>
+                                <Row>
+                                    <br/>
+                                    <hr />
+                                    <Comments comments={ comments } />
                                 </Row>
                         </Modal.Body>
                         </Styled>

@@ -13,6 +13,7 @@ import MyButton from '../../util/MyButton';
 import DeleteUpdate from './DeleteUpdate';
 import UpdateDialog from './UpdateDialog';
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 
 //import likeButton from ''
 //Icons 

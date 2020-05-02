@@ -22,7 +22,7 @@ class home extends Component {
         ) : ( <p> Loading ...</p>
         );
         return (
-            <Container>
+            <Container className="container-special">
                 <Row>
                     <Col md={9} lg={9} sm={8} xs={12}>
                         {recentUpdatesMarkup}
