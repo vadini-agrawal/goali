@@ -1,4 +1,4 @@
-import { SET_UPDATE, LIKE_UPDATE, UNLIKE_UPDATE, LOADING_DATA, SET_UPDATES, DELETE_UPDATE, POST_UPDATE} from '../types';
+import { SET_UPDATE, LIKE_UPDATE, UNLIKE_UPDATE, LOADING_DATA, SET_UPDATES, DELETE_UPDATE, POST_UPDATE, SUBMIT_COMMENT} from '../types';
 import { bindActionCreators } from 'redux';
 
 const initialState = {
@@ -49,6 +49,14 @@ export default function(state = initialState, action) {
                     action.payload,
                     ...state.updates
                 ]
+            };
+        case SUBMIT_COMMENT:
+            return {
+                ...state,
+                update: {
+                    ...state.update,
+                    comments: [action.payload, ...state.update.comments]
+                }
             };
         default: 
             return state;

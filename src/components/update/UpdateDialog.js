@@ -9,7 +9,7 @@ import ChatIcon from 'react-bootstrap-icons/dist/icons/chat-dots-fill';
 
 //Redux 
 import { connect } from 'react-redux';
-import { getUpdate } from '../../redux/actions/dataActions';
+import { getUpdate,clearErrors } from '../../redux/actions/dataActions';
 //UI 
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -21,6 +21,7 @@ import Image from 'react-bootstrap/Image';
 import { LinkContainer } from 'react-router-bootstrap';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 
 
 const Styled = styled.section`
@@ -119,6 +120,7 @@ class UpdateDialog extends Component {
                                 <Row>
                                     <br/>
                                     <hr />
+                                    <CommentForm updateId = {updateId}/>
                                     <Comments comments={ comments } />
                                 </Row>
                         </Modal.Body>
@@ -138,7 +140,8 @@ UpdateDialog.propTypes = {
     updateId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
     update: PropTypes.object.isRequired,
-    UI: PropTypes.object.isRequired
+    UI: PropTypes.object.isRequired,
+    clearErrors: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state =>({
@@ -146,4 +149,4 @@ const mapStateToProps = state =>({
     UI: state.UI 
 });
 
-export default connect(mapStateToProps, { getUpdate })(UpdateDialog)
+export default connect(mapStateToProps, { getUpdate  })(UpdateDialog)
