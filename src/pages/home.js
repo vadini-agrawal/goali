@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 //Components
 import Update from '../components/update/Update';
 import Profile from '../components/profile/Profile';
+import UpdateSkeleton from '../util/UpdateSkeleton';
+import ProfileSkeleton from '../util/ProfileSkeleton';
+
 //Redux 
 import { connect } from 'react-redux';
 import { getUpdates } from '../redux/actions/dataActions';
@@ -19,7 +22,13 @@ class home extends Component {
         const { updates, loading } = this.props.data;
         let recentUpdatesMarkup = !loading ? (
             updates.map(update => <Update key={update.updateId} update={update}/>)
-        ) : ( <p> Loading ...</p>
+        ) : ( 
+            <UpdateSkeleton />
+        );
+        let profileMarkup = !loading ? (
+            <Profile />
+        ) : ( 
+            <ProfileSkeleton />
         );
         return (
             <Container className="container-special">
@@ -28,7 +37,7 @@ class home extends Component {
                         {recentUpdatesMarkup}
                     </Col>
                     <Col md={3} lg={3} sm={4} xs={12}>
-                        <Profile />
+                        {profileMarkup}
                     </Col>
                 </Row>
             </Container>

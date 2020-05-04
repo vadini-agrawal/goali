@@ -11,6 +11,8 @@ import Nav from 'react-bootstrap/Nav';
 import NavItem from 'react-bootstrap/Nav';
 import MyButton from '../util/MyButton';
 import PostUpdate from './update/PostUpdate';
+import Notifications from './Notifications';
+
 //Icons 
 import AddIcon from 'react-bootstrap-icons/dist/icons/plus';
 import HomeIcon from 'react-bootstrap-icons/dist/icons/house-door-fill';
@@ -39,16 +41,14 @@ export class Navibar extends Component {
                         <NavIcons>
                         <PostUpdate />
                         {/* <IconSpace> */}
-                        <LinkContainer to="/">
+                        <LinkContainer to={"/"}>
                             <MyButton tip="Home">
-                                <HomeIcon/>
+                                <HomeIcon  />
                             </MyButton>
                         </LinkContainer>
                         {/* </IconSpace> */}
                         {/* <IconSpace> */}
-                        <MyButton tip="Notifications">
-                            <NotifIcon/>
-                        </MyButton>
+                        <Notifications />
                         {/* </IconSpace> */}
                     </NavIcons>
                     </Fragment>

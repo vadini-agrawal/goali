@@ -104,7 +104,7 @@ class Update extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <UpdateDialog updateId = { updateId } userHandle={ userHandle } /> 
+                            <UpdateDialog updateId = { updateId } userHandle={ userHandle } openDialog={this.props.openDialog} /> 
                         </Row>
                     </Card.Body>
                 </Card>
@@ -116,7 +116,8 @@ class Update extends Component {
 Update.propTypes = {
     user: PropTypes.object.isRequired,
     update: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 }
 
 const mapStateToProps = state => ({

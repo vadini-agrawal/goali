@@ -109,6 +109,23 @@ export const deleteUpdate = (updateId) => dispatch => {
         .catch(err => console.log(err));
 }
 
+export const getUserData = (userHandle) => dispatch => {
+    dispatch({ type: LOADING_DATA });
+    axios.get(`/user/${userHandle}`)
+        .then(res => {
+            dispatch({
+                type: SET_UPDATES,
+                payload: res.data.updates
+            });
+        })
+        .catch(err => {
+            dispatch({
+                type: SET_UPDATES,
+                payload: null
+            });
+            console.log('hitting an error here ');
+        });
+}
 
 
 export const clearErrors = () => (dispatch) => {

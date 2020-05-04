@@ -42,13 +42,31 @@ const StyledSpin = styled.section`
 
 class UpdateDialog extends Component {
     state = {
-        open: false
+        open: false,
+        oldPath: '',
+        newPath: ''
+    };
+    componentDidMount() {
+        if(this.props.openDialog) {
+            this.handleOpen();
+        }
     }
     handleOpen = () => {
-        this.setState({ open: true });
+        let oldPath = window.location.pathname;
+        const { userHandle, updateId } = this.props;
+        const newPath = `/users/${userHandle}/update/${updateId}`;
+        window.history.pushState(null, null, newPath);
+        
+        if (oldPath === newPath) {
+            oldPath = `/users/${userHandle}`;
+        }
+
+        this.setState({ open: true, oldPath, newPath });
         this.props.getUpdate(this.props.updateId);
     }
     handleClose = () => {
+        window.history.pushState(null, null, this.state.oldPath);
+
         this.setState({ open: false });
     }
     render() {
