@@ -24,6 +24,8 @@ import user from './pages/user';
 import axios from 'axios';
 //import styled from 'styled-components';
 
+axios.defaults.baseURL = "https://us-central1-goali-94346.cloudfunctions.net/api";
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
