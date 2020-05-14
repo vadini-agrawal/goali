@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
 
 //Redux 
 import { connect } from 'react-redux';
@@ -11,11 +10,8 @@ import { submitComment } from '../../redux/actions/dataActions';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
-import { LinkContainer} from 'react-router-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Spinner from 'react-bootstrap/Spinner';
 
 
 const ImageStyle = styled.section`
@@ -86,7 +82,7 @@ class CommentForm extends Component {
 CommentForm.propTypes = {
     submitComment: PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
     updateId: PropTypes.object.isRequired,
     authenticated: PropTypes.bool.isRequired,
 

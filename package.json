@@ -10,6 +10,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-icons": "^1.0.0-alpha3",
     "dayjs": "^1.8.24",
+    "firebase": "^7.14.3",
     "jwt-decode": "^2.2.0",
     "live-server": "^1.2.1",
     "react": "^16.13.1",

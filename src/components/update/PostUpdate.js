@@ -17,7 +17,7 @@ class PostUpdate extends Component {
     state = {
         open: false,
         body: '',
-        goalType: '',
+        goalType: 'Small-Win',
         errors: {}
     };
     componentWillReceiveProps(nextProps) {
@@ -45,7 +45,7 @@ class PostUpdate extends Component {
         event.preventDefault();
         const newUpdate = {
             body: this.state.body,
-            goalType: 'Small Win'
+            goalType: this.state.goalType
         };
         this.props.postUpdate(newUpdate);
         if (!this.state.errors) {
@@ -66,14 +66,18 @@ class PostUpdate extends Component {
                         <Modal.Title> Post update </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                                    <Form.Group>
-                                    <Form.Label>Your update</Form.Label>
-                                    <Form.Control name="body" as="textarea" rows="2" size="lg" placeholder="Your small win!"  onChange={this.handleChange} isInvalid={errors.body }/>
-                                    <Form.Control.Feedback type="invalid">
-                                            {errors.body}
-                                    </Form.Control.Feedback>
-                                    </Form.Group>
-                            
+                            <Form.Group>
+                                <Form.Label>Your update</Form.Label>
+                                <Form.Control name="body" as="textarea" rows="2" size="lg" placeholder="Your small win!"  onChange={this.handleChange} isInvalid={errors.body }/>
+                                <Form.Control.Feedback type="invalid">
+                                        {errors.body}
+                                </Form.Control.Feedback>
+                                <br />
+                                    <Form.Check inline name="goalType" value="Small-Win" id="small-win" type="radio" label="Small Win" checked={this.state.goalType === 'Small-Win'} onChange={this.handleChange}/> 
+                                    <Form.Check inline name="goalType" value="Health" id="health" type="radio" label="Health" checked={this.state.goalType === 'Health'} onChange={this.handleChange}/>
+                                    <Form.Check inline name="goalType" value="Habits" id="habits" type="radio" label="Habits" checked={this.state.goalType === 'Habits'} onChange={this.handleChange}/>
+                                    <Form.Check inline name="goalType" value="Personal" id="personal" type="radio" label="Personal" checked={this.state.goalType === 'Personal'} onChange={this.handleChange}/>
+                            </Form.Group>
                         </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>

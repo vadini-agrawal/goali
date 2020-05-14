@@ -9,8 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import { LinkContainer }  from 'react-router-bootstrap';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import ProfileSkeleton from '../../util/ProfileSkeleton';
+
 //Icons
 import HouseIcon from 'react-bootstrap-icons/dist/icons/house-door-fill';
 import LinkIcon from 'react-bootstrap-icons/dist/icons/link';
@@ -106,7 +106,7 @@ class Profile extends Component {
                     </LinkContainer>
                 </Card.Text>
             </Card>
-        )) : (<p> Loading... </p>)
+        )) : (<ProfileSkeleton />)
         return profileMarkup;
     }
 }
@@ -121,7 +121,7 @@ const mapActionsToProps = {
 
 Profile.propTypes = {
     user: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
     logoutUser: PropTypes.func.isRequired,
     uploadImage: PropTypes.func.isRequired
 }

@@ -9,18 +9,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const CardStyle = styled.section`
-margin-bottom: 10px;
-`;
-const DivTitle = styled.section`
-background-color: gray;
-height: 20px;
-width: 250px;
-margin-bottom: 80px;
-`;
-const DivBody = styled.section`
-background-color: silver;
-height: 50px;
-width: 400px;
+    margin-bottom: 10px;
+    .div_title {
+        background-color: gray;
+        height: 20px;
+        width: 250px;
+        margin-bottom: 80px;
+    }
+    .div_body {
+        background-color: silver;
+        height: 50px;
+        width: 400px;
+    }
 `;
 
 const UpdateSkeleton = (props) => {
@@ -28,14 +28,14 @@ const UpdateSkeleton = (props) => {
 
 
     const div_title = 
-        <DivTitle><div ></div></DivTitle>
+       <div ></div>
     const div_body = 
-        <DivBody><div></div></DivBody>
+        <div></div>
 
 
     const content = Array.from({ length: 4}).map((item, index) => 
       (
-        <CardStyle>
+        <CardStyle key={index}>
         <Card key={index}>
             <Card.Body>
              <Row>
@@ -43,12 +43,12 @@ const UpdateSkeleton = (props) => {
                     <Card.Img width="50px" src={NoImg} title="Profile Image"/>
                 </Col>
                 <Col xs={9} sm={9} md={9} lg={9}>
-                    <Card.Title>
+                    <div className="div_title">
                         {div_title}
-                    </Card.Title>
-                    <Card.Text>
+                    </div>
+                    <div className="div_body">
                         {div_body}
-                    </Card.Text>
+                    </div>
                 </Col>
              </Row>
              <Row>

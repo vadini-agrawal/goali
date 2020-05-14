@@ -1,11 +1,16 @@
 import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER, MARK_NOTIFICATIONS_READ} from '../types';
 import axios from 'axios';
 
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker-custom.js', {scope: '/'});
+  }
+
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios.post('/login', userData)
     .then(res => {
-        setAuthorizationHeader(res.data.token);
+       setAuthorizationHeader(res.data.token);
         dispatch(getUserData());
         dispatch({ type: CLEAR_ERRORS });
         // this.setState({
@@ -16,7 +21,7 @@ export const loginUser = (userData, history) => (dispatch) => {
     .catch(err => {
         dispatch({
             type: SET_ERRORS,
-            payload: err.response.data
+            payload: err.res.data
         })
     });
 }
@@ -25,7 +30,7 @@ export const signupUser = (newUserData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios.post('/signup', newUserData)
     .then(res => {
-        setAuthorizationHeader(res.data.token);
+       setAuthorizationHeader(res.data.token);
         dispatch(getUserData());
         dispatch({ type: CLEAR_ERRORS });
         history.push('/');
@@ -87,7 +92,8 @@ export const markNotificationsRead = (notificationIds) => dispatch => {
 
 const setAuthorizationHeader = (token) => {
     // console.log(res.data);
-    const FBIdToken = `Bearer ${token}`;
+    let idToken = token;
+    const FBIdToken = `Bearer ${idToken}`;
     localStorage.setItem('FBIdToken', FBIdToken);
     axios.defaults.headers.common['Authorization'] = FBIdToken;
 }

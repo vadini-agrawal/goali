@@ -20,4 +20,16 @@ export const GlobalStyles = createGlobalStyle`
   a:hover {
       color: ${({ theme }) => theme.texthover};
       text-decoration: none;
+  }
+  nav {
+    background: ${({ theme}) => theme.navcolor};
+  }
+  .nav-link {
+    color: ${({ theme }) => theme.texthover};
+  }
+  .icon_link {
+    fill: ${({ theme }) => theme.iconfill} !important;
+  }
+  svg {
+    fill: ${({ theme }) => theme.iconfill} !important;
   }`

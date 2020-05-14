@@ -37,7 +37,7 @@ export class signup extends Component {
             errors: {}
         }
     };
-    componentWillReceiveProps(nextProps) {
+    componentWillUpdate(nextProps) {
         if (nextProps.UI.errors) {
             this.setState({ errors: nextProps.UI.errors});
         }

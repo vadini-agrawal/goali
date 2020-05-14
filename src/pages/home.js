@@ -18,6 +18,9 @@ class home extends Component {
     componentDidMount() {
         this.props.getUpdates();
     }
+    // componentDidUpdate() {
+    //     this.props.getUpdates();
+    // }
     render() {
         const { updates, loading } = this.props.data;
         let recentUpdatesMarkup = !loading ? (

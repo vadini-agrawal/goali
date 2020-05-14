@@ -9,11 +9,9 @@ import ChatIcon from 'react-bootstrap-icons/dist/icons/chat-dots-fill';
 
 //Redux 
 import { connect } from 'react-redux';
-import { getUpdate,clearErrors } from '../../redux/actions/dataActions';
+import { getUpdate } from '../../redux/actions/dataActions';
 //UI 
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -159,7 +157,7 @@ UpdateDialog.propTypes = {
     userHandle: PropTypes.string.isRequired,
     update: PropTypes.object.isRequired,
     UI: PropTypes.object.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func
 }
 
 const mapStateToProps = state =>({

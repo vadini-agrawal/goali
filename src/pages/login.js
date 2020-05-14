@@ -35,10 +35,18 @@ export class login extends Component {
             loading: false,
             errors: {}
         }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker-custom.js', {scope: '/'});
+          }
     };
     componentWillReceiveProps(nextProps) {
         if(nextProps.UI.errors) {
-            this.setState({errors: nextProps.UI.errors});
+            this.setState({
+                errors: nextProps.UI.errors
+            });
+        }
+        if(!nextProps.UI.errors && !nextProps.UI.loading) {
+            this.setState({ body: '', errors: {}})
         }
     }
     handleSubmit = (event) => {
@@ -51,6 +59,7 @@ export class login extends Component {
             password: this.state.password
         }
         this.props.loginUser(userData, this.props.history);
+        window.history.pushState(null, null, '/home');
     };
     handleChange = (event) => {
         this.setState({
@@ -73,7 +82,7 @@ export class login extends Component {
                 </LoginTitle>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control name="email" id="email" type="email" placeholder="Enter email" onChange={this.handleChange} isInvalid={errors.email ? true: false} />
+                    <Form.Control name="email"  type="email" placeholder="Enter email" onChange={this.handleChange} isInvalid={errors.email ? true: false} />
                     <Form.Control.Feedback type="invalid">
                         {errors.email}
                     </Form.Control.Feedback>
@@ -81,7 +90,7 @@ export class login extends Component {
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control name="password" id="password" type="password" placeholder="Password" onChange={this.handleChange} isInvalid={errors.password ? true: false}/>
+                    <Form.Control name="password"  type="password" placeholder="Password" onChange={this.handleChange} isInvalid={errors.password ? true: false}/>
                     <Form.Control.Feedback type="invalid">
                             {errors.password}
                     </Form.Control.Feedback>
@@ -111,7 +120,7 @@ export class login extends Component {
 }
 
 login.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
     loginUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     UI: PropTypes.object.isRequired

@@ -14,77 +14,83 @@ import PostUpdate from './update/PostUpdate';
 import Notifications from './Notifications';
 
 //Icons 
-import AddIcon from 'react-bootstrap-icons/dist/icons/plus';
+import { ReactComponent as AddIcon } from 'react-bootstrap-icons/dist/icons/plus';
 import HomeIcon from 'react-bootstrap-icons/dist/icons/house-door-fill';
 import NotifIcon from 'react-bootstrap-icons/dist/icons/bell-fill';
 
 //import { Navbar, Nav } from 'react-bootstrap';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 // import Form from 'react-bootstrap/Form';
-const NavIcons= styled.section`
-  text-align; center;
-  align-item: center;
-  margin: 10px;
-  margin-left: 35vw;
-  display: inline-block;
+const NavIcons= styled.div`
+    display: inline-block !important;
+    margin-right: 10px;
+    margin-left: 10px;
+    .dropdown-toggle::after {
+        display: none;
+    }
+    svg {
+        fill: #f5f5fe;
+    }
+
+`;
+const NavText= styled.section`
+    div {
+        display: inline-block;
+    }
+    .nav-link {
+        color:  #f5f5fe !important;
+        display: inline-block;
+    }
 `;
 
 export class Navibar extends Component {
     state = {}
     render() {
         const { authenticated } = this.props
-        
         return (
-            <Navbar fixed="top" bg="primary" variant="dark">
+            <Navbar fixed="top" className="justify-content-center" >
                 { authenticated ? (
                     <Fragment>
                         <NavIcons>
-                        <PostUpdate />
-                        {/* <IconSpace> */}
-                        <LinkContainer to={"/"}>
-                            <MyButton tip="Home">
-                                <HomeIcon  />
-                            </MyButton>
-                        </LinkContainer>
-                        {/* </IconSpace> */}
-                        {/* <IconSpace> */}
-                        <Notifications />
-                        {/* </IconSpace> */}
-                    </NavIcons>
+                        <Nav.Item  style={{ 'marginRight': '25px'}}>
+                            <span> 
+                            <PostUpdate className="icon_link"  />
+                            </span>
+                        </Nav.Item>
+                        </NavIcons>
+                        <NavIcons>
+                        <Nav.Item >
+                            <Nav.Link className="icon_link" href="/">
+                                <HomeIcon className="icon_link" />
+                            </Nav.Link>
+                        </Nav.Item>
+                        </NavIcons>
+                        <NavIcons>
+                        <Nav.Item className="icon_link">
+                            <Notifications className="icon_link" />
+                        </Nav.Item>
+                        </NavIcons>
                     </Fragment>
                     
                 ) : (
                     <Fragment>
-                    <Navbar.Brand>
-                        <LinkContainer to="/">
-                            <NavItem>
+                        <NavText>
+                        <Nav.Item>
+                            <Nav.Link className="nav-link" href="/">
                                 Home
-                            </NavItem>
-                        </LinkContainer>
-                        </Navbar.Brand>
-                        <Nav className="mr-auto">
-                        <Nav.Link>
-                            <LinkContainer to="/login">
-                                <NavItem>
-                                    Login
-                                </NavItem>
-                            </LinkContainer>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <LinkContainer to="/">
-                                <NavItem>
-                                    Home
-                                </NavItem>
-                            </LinkContainer>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <LinkContainer to="/signup">
-                                <NavItem>
-                                    Signup
-                                </NavItem>
-                            </LinkContainer>
-                        </Nav.Link>
-                        </Nav>
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="nav-link" href="/login">
+                                Login
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="nav-link" href="/signup">
+                                Signup
+                            </Nav.Link>
+                        </Nav.Item>
+                        </NavText>
                     </Fragment>
                 ) }
             </Navbar>

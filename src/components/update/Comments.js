@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 
-//Redux 
-import { connect } from 'react-redux';
-import { getUpdate } from '../../redux/actions/dataActions';
+// //Redux 
+// import { connect } from 'react-redux';
+// import { getUpdate } from '../../redux/actions/dataActions';
 
 // MUI 
 import Row from 'react-bootstrap/Row';
@@ -30,8 +30,7 @@ class Comments extends Component {
                     const { body, createdAt, userImage, userHandle } = comment;
                     return (
                         <Container >
-                                                            <hr />
-
+                            <hr />
                             <Row key={ createdAt }>
                                 <ImageStyle>
                                 <Col  sm={2}> 
@@ -59,7 +58,7 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
-    comments: PropTypes.array.isRequired
+    comments: PropTypes.array
 }
 
 export default (Comments)

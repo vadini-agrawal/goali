@@ -40,7 +40,7 @@ const ProfileSkeleton = (props) => {
 
     const content = Array.from({ length: 6}).map((item, index) => 
       (
-        <DivTitle><div key={index}></div></DivTitle>
+        <DivTitle key={index}><div key={index}></div></DivTitle>
       ))
     return (
         <Fragment>
@@ -58,7 +58,7 @@ const ProfileSkeleton = (props) => {
 }
 
 ProfileSkeleton.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object
 }
 
 export default ProfileSkeleton

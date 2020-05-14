@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 // UI 
-import { LinkContainer, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 
@@ -11,8 +11,6 @@ import Image from 'react-bootstrap/Image';
 import HouseIcon from 'react-bootstrap-icons/dist/icons/house-door-fill';
 import LinkIcon from 'react-bootstrap-icons/dist/icons/link';
 import CalendarIcon from 'react-bootstrap-icons/dist/icons/calendar-fill';
-import EditIcon from 'react-bootstrap-icons/dist/icons/pencil';
-import Kanban from 'react-bootstrap-icons/dist/icons/kanban-fill';
 
 const StaticProfile = (props) => {
     const {classes, profile: { handle, createdAt, imageUrl, bio, website, location }} = props;
@@ -67,7 +65,7 @@ const StaticProfile = (props) => {
 
 StaticProfile.propTypes = {
     profile: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object
 }
 
 export default StaticProfile;

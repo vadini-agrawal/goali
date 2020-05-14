@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { LinkContainer} from 'react-router-bootstrap';
 // import Link from 'react-router-dom/Link';
 
 //Bootstrap stuff 
@@ -100,7 +99,7 @@ class Update extends Component {
                                 <MyButton tip="Comment">
                                     <ChatIcon />
                                 </MyButton>
-                                    {commentCount} Comments
+                                {commentCount} Comments
                             </Col>
                         </Row>
                         <Row>
@@ -116,7 +115,7 @@ class Update extends Component {
 Update.propTypes = {
     user: PropTypes.object.isRequired,
     update: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
     openDialog: PropTypes.bool
 }
 

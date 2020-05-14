@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import { LinkContainer} from 'react-router-bootstrap';
+
 import { connect } from 'react-redux';
 import { deleteUpdate} from '../../redux/actions/dataActions';
 import PropTypes from 'prop-types';
@@ -9,7 +8,6 @@ import PropTypes from 'prop-types';
 import MyButton from '../../util/MyButton';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 //Icons 
 import DelIcon from 'react-bootstrap-icons/dist/icons/x-circle';
 
@@ -64,7 +62,7 @@ class DeleteUpdate extends Component {
 
 DeleteUpdate.propTypes = {
     deleteUpdate: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
     updateId: PropTypes.string.isRequired
 }
 

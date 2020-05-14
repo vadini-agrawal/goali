@@ -51,10 +51,13 @@ export default function(state = initialState, action) {
                 ]
             };
         case SUBMIT_COMMENT:
+            let commIndex = state.updates.findIndex((update) => update.updateId === action.payload.updateId);
+            state.updates[commIndex].commentCount = action.payload.commentCount
             return {
                 ...state,
                 update: {
                     ...state.update,
+                    commentCount: action.payload.commentCount,
                     comments: [action.payload, ...state.update.comments]
                 }
             };

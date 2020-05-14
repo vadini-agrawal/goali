@@ -25,15 +25,11 @@ class Notifications extends Component {
     state = {
         anchorE1: null
     };
-
     onMenuOpened = () => {
         let unreadNotifId = this.props.notifications
             .filter(notif => !notif.read)
             .map(notif => notif.notificationId);
-        console.log(unreadNotifId);
-        console.log(this.props.notifications);
         this.props.markNotificationsRead(unreadNotifId);
-        console.log('reached here');
     };
 
     render() {
@@ -82,7 +78,7 @@ class Notifications extends Component {
             )
 
         return (
-                <NavDropdown title={ notifIcon } onClick={ this.onMenuOpened}>
+                <NavDropdown title={ notifIcon } onClick={ this.onMenuOpened} className="icon_link"> 
                     { notificationsMarkup }
                 </NavDropdown>
         )
