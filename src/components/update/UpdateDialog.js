@@ -23,6 +23,8 @@ import CommentForm from './CommentForm';
 
 
 const Styled = styled.section`
+    display: inline-block;
+    margin: 10px;
     .invisibleSeparator {
         border: none;
         margin: 4;

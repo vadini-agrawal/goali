@@ -55,6 +55,7 @@ export class App extends Component {
       if (decodedToken.exp * 1000 < Date.now()) {
         store.dispatch(logoutUser());
         console.log("YOU ARE LOGGEEDDDDD OUT ");
+        //TODO: add admin to the firebase folder to properly call these methods 
         // window.location.href = '/login'
       // } else if (decodedToken.exp * 1000 - Date.now() < 10000) {
       //   const user = this.props.firebase.auth.verifyIdToken(token)

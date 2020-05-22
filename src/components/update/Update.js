@@ -24,6 +24,33 @@ import PropTypes from 'prop-types';
 
 const CardStyle = styled.section`
   margin-bottom: 10px;
+  .card {
+      padding: 15px;
+  }
+  .icon {
+      height: 20px;
+      margin: 10px;
+  }
+  .title {
+      font-size: 20px;
+  }
+  .title:hover {
+      text-decoration: underline;
+  }
+  .date {
+      font-size: 15px;
+  }
+  .body {
+      font-size: 18px;
+  }
+  .goalType {
+      margin-top; 30px;
+      font-size: 16px;
+      padding: 8px;
+  }
+  .update {
+      margin: 10px;
+  }
 `;
 
 const IconStyle = styled.svg`
@@ -62,7 +89,7 @@ class Update extends Component {
         ) : null
         return (
             <CardStyle>
-                <Card>
+                <Card className="card">
                     <Card.Body>
                         <Row>
                             <Col xs={3} sm={3} md={3} lg={3}>
@@ -71,39 +98,24 @@ class Update extends Component {
                             <Col xs={9} sm={9} md={9} lg={9}>
                                 <Card.Title>
                                     <Card.Link href={`/users/${userHandle}`}> 
-                                        {userHandle}
+                                      <span className="title">  {userHandle}</span><span className='date'>  {dayjs(createdAt).fromNow()} </span>
                                     </Card.Link>
                                 </Card.Title>
-                                    <Card.Text>
-                                        {dayjs(createdAt).fromNow()} <br></br>
-                                        {body}
-                                    </Card.Text>
+                                <span className="body"> {body} </span>
                                 { deleteButton }
-                            </Col>
-                        </Row>
-                        <br>
-                        </br>
-                        <Row>
-                            <Col xs={3} sm={3} md={3} lg={3}>
-                
-                            </Col>
-                            <Col xs={4} sm={4} md={4} lg={4}>
-                                <Card.Text>
+                                <Card.Text className="goalType">
                                     {goalType}
- 
+                                </Card.Text>
+                                <Card.Text className="likes">
+                                    <LikeButton className="icon" updateId = { updateId}/>
+                                    <span> {likeCount}   Likes  </span>  
+                                    <MyButton tip="Comment">
+                                        <ChatIcon className="icon" />
+                                    </MyButton>
+                                    {commentCount} Comments
+                                    <UpdateDialog className="update" updateId = { updateId } userHandle={ userHandle } openDialog={this.props.openDialog} /> 
                                 </Card.Text>
                             </Col>
-                            <Col xs={5} sm={5} md={5} lg={5}>
-                                <LikeButton updateId = { updateId}/>
-                                {likeCount} Likes    
-                                <MyButton tip="Comment">
-                                    <ChatIcon />
-                                </MyButton>
-                                {commentCount} Comments
-                            </Col>
-                        </Row>
-                        <Row>
-                            <UpdateDialog updateId = { updateId } userHandle={ userHandle } openDialog={this.props.openDialog} /> 
                         </Row>
                     </Card.Body>
                 </Card>

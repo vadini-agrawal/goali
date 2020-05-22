@@ -26,6 +26,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-src/components/Firebase 
-firebase.js
-context.js
+src/components/Firebase/firebase.js
