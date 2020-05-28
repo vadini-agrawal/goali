@@ -23,6 +23,38 @@ import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 import MyButton from '../../util/MyButton';
 
+const Styled = styled.section`
+    position: fixed;
+    .edit-button {
+        vertical-align: bottom;
+    }
+    .profile-img {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .profile-details {
+        margin-top: 15px;
+    }
+    .icon {
+        display: inline-block;
+        margin-bottom: 3px;
+    }
+    .icon-desc {
+        display: inline-block;
+        margin-left: 10px;
+    }
+    .desc {
+        text-align: center;
+    }
+    .bottom-div {
+        text-align: right;
+        justify-content: right;
+    }
+    .icon-bottom {
+        margin-right: 10px;
+    }
+`;
+
 
 class Profile extends Component {
     handleImageChange = (event) => {
@@ -43,29 +75,30 @@ class Profile extends Component {
         const { classes, user: { credentials: { handle, createdAt, imageUrl, bio, website, location}, loading, authenticated}} = this.props;
         
         let profileMarkup = !loading ? (authenticated ? (
-            <Card>
+            <Styled>
+            <Card className="card">
                 <Card.Body>
                     <div>
                         <div className="profile-img">
                             <Image width="80px" src={imageUrl} alt="Profile Pic" roundedCircle></Image>
                             <input type="file" id="imageInput" hidden="hidden" onChange={this.handleImageChange}/>
-                            <MyButton tip="Change your profile picture" id="editImage">
-                                <EditIcon onClick={this.handleEditPicture} />
+                            <MyButton tip="Change your profile picture" id="editImage" >
+                                <EditIcon onClick={this.handleEditPicture} className="edit-button"/>
                             </MyButton>
-                        </div>  
-                        <br/>
-                        <div className="profile-details">
+                            <div className="profile-details"> 
                                 <Link to={`/users/${handle}`}>@{handle}</Link>
-                        </div>
+                            </div>
+                        </div>  
+
                         <br/>
-                        { bio && (<Card.Text>
+                        { bio && (<Card.Text className="desc">
                                 {bio}
                             </Card.Text>)}
                         <br />
                         { location && (
                             <Fragment>
-                                <HouseIcon/> 
-                                <Card.Text>
+                                <HouseIcon className="icon"/> 
+                                <Card.Text className="icon-desc">
                                     { location }
                                 </Card.Text>
                                 <br/>
@@ -73,8 +106,8 @@ class Profile extends Component {
                         )}
                         { website && (
                             <Fragment>
-                                <LinkIcon/> 
-                                <Card.Text>
+                                <LinkIcon className="icon"/> 
+                                <Card.Text className="icon-desc">
                                     <a href={ website } target="_blank" rel="noopener noreferrer">
                                         {website}
                                     </a>
@@ -82,17 +115,20 @@ class Profile extends Component {
                                 <br/>
                             </Fragment>
                         )}
-                        <CalendarIcon/>
-                        <Card.Text>
+                        <CalendarIcon className="icon"/>
+                        <Card.Text className="icon-desc">
                             Joined { dayjs(createdAt).format('MMM YYYY')}
-                        </Card.Text>
-                        <MyButton tip="Log out" id="logoutUser">
-                            <Kanban onClick={this.handleLogoutUser} />
-                        </MyButton>
+                        </Card.Text> <br />
+                        <div className="bottom-div">
+                            <MyButton tip="Log out" id="logoutUser" className="icon-bottom">
+                                <Kanban onClick={this.handleLogoutUser}className="icon-bottom"/>
+                            </MyButton>
+                            <EditDetails className="icon-bottom"/>
+                        </div>
                     </div>
-                    <EditDetails />
                 </Card.Body>
             </Card>
+            </Styled>
         ): (
             <Card>
                 <Card.Text>

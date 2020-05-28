@@ -108,7 +108,7 @@ class Update extends Component {
                                 </Card.Text>
                                 <Card.Text className="likes">
                                     <LikeButton className="icon" updateId = { updateId}/>
-                                    <span> {likeCount}   Likes  </span>  
+                                    <span> { likeCount} {(likeCount) === 1 ? "Like" : "Likes"} </span>  
                                     <MyButton tip="Comment">
                                         <ChatIcon className="icon" />
                                     </MyButton>

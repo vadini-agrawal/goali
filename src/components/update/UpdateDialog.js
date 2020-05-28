@@ -35,7 +35,49 @@ const Styled = styled.section`
     .spinner {
         text-align: center;
     }
+    .card {
+        padding: 15px;
+    }
+    .icon {
+        height: 20px;
+        margin: 10px;
+    }
+    .title {
+        font-size: 20px;
+    }
+    .title:hover {
+        text-decoration: underline;
+    }
+    .date {
+        font-size: 15px;
+    }
+    .body {
+        font-size: 18px;
+    }
+    .goalType {
+        margin-top; 30px;
+        font-size: 16px;
+        padding: 8px;
+    }
+    .update {
+        margin: 10px;
+    }
+    .col-image {
+        display: flex;
+    }
+    .image {
+        margin: auto;
+        text-align: center;
+    }
+    .modal-header {
+        height: 0px;
+        border: none;
+    }
+    .loading {
+        height: 80vh;
+    }
 `;
+
 const StyledSpin = styled.section`
     text-align: center;
 `;
@@ -95,7 +137,7 @@ class UpdateDialog extends Component {
                 <Modal size="lg" show={ this.state.open  } onHide={ this.handleClose } width="80%" style={{'width': '80% !important',  'padding': '10px'}}>
                     { loading ? (
                         <StyledSpin>
-                        <Modal.Body>
+                        <Modal.Body className="loading">
                             <Spinner className="spinner" as="span"
                             animation="border"
                             size="lg"
@@ -106,35 +148,32 @@ class UpdateDialog extends Component {
                     ) : (
                         <Styled>
                         <Modal.Body style={{'maxHeight': 'calc(100vh - 50px)', 'overflowY': 'auto'}} >
-                                <Row>
-                                    <Col sm={3}>
-                                        <Image width="80px" height="80px" className="proPic" src={userImage} roundedCircle/>
-                                    </Col>
-                                    <Col sm={9}>
-                                        <LinkContainer to={`/users/${userHandle}`}>
-                                            <Modal.Title>@{userHandle}</Modal.Title>
-                                        </LinkContainer>
-                                        {/* <hr className="invisibleSeparator"/> */}
-                                        { dayjs(createdAt).format('h:mm a, MMM DD YYYY')}
-                                        <br />
-                                        {/* <hr className="invisibleSeparator"/> */}
-                                        { body }
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={8}>
-                                        { goalType }
-                                    </Col>
-                                    <Col sm={4}>
-                                        <LikeButton updateId = { updateId}/>
-                                        {likeCount} Likes    
+                        <Modal.Header className="modal-header" closeButton></Modal.Header>
+                            <Row>
+                                <Col xs={3} sm={3} md={3} lg={3} className="col-image">
+                                    <Image width="80%" src={userImage} title="Profile Image" className="image" roundedCircle/>
+                                </Col>
+                                <Col xs={9} sm={9} md={9} lg={9}>
+                                    <p>
+                                        <a href={`/users/${userHandle}`}> 
+                                        <span className="title"> @{userHandle}</span><span className='date'>  {dayjs(createdAt).fromNow()} </span>
+                                        </a>
+                                    </p>
+                                    <span className="body"> {body} </span>
+                    
+                                    <p className="goalType">
+                                        {goalType}
+                                    </p>
+                                    <p className="likes">
+                                        <LikeButton className="icon" updateId = { updateId}/>
+                                        <span> { likeCount} {(likeCount) === 1 ? "Like" : "Likes"} </span>  
                                         <MyButton tip="Comment">
-                                            <ChatIcon />
+                                            <ChatIcon className="icon" />
                                         </MyButton>
-                                            {commentCount} Comments
-                                    </Col>
-                                    <hr />
-                                </Row>
+                                        {commentCount} Comments
+                                    </p>
+                                </Col>
+                            </Row>
                                 <Row>
                                     <br/>
                                     <hr />
